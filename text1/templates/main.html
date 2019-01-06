@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<head>
+<title>{{ title }}</title>
+<style>
+        .center {
+          margin: auto;
+          width: 60%;
+          border: 3px solid rgb(49, 136, 207);
+          padding: 10px;
+        }
+        </style>
+</head>
+<body>
+    <div class="center">
+    <h1>Abstract Analyzer</h1>
+    <h2>The date and time on the server is: {{ time }}</h2>
+    <p>The CPU has {{ cpucount }} cores.</p>
+    <p>This is a webapp template for Abstract Analyzer. Feel free to enter the abstract of your great work below and click submit. The actual analysis will be implemented in the next few weeks.</p>
+    <br>
+    <form role="form" method='POST' action='/'>
+        <fieldset>
+            <legend>Text input</legend>
+            <p>
+            <label>Text Area</label>
+            <textarea id = "myTextArea" name="myTextArea" rows = "3" cols = "80">Enter your abstract here</textarea>
+            </p>
+            <button type="submit" class="btn btn-default">Submit</button>
+            </fieldset>
+    </form>
+    <br>
+    {% if results %}
+    <p>{{ results.text }} </p>
+    {% endif %}
+    <br>
+    {% for error in errors %}
+    <h4>{{ error }}</h4>
+    {% endfor %}
+    </div>
+</body>
+</html>
