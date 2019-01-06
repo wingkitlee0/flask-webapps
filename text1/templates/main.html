@@ -17,7 +17,7 @@
     <p>The CPU has {{ cpucount }} cores.</p>
     <p>This is a webapp template for Abstract Analyzer. Feel free to enter the abstract of your great work below and click submit. The actual analysis will be implemented in the next few weeks.</p>
     <br>
-    <form role="form" method='POST' action='/'>
+    <form role="form" method='POST' action="{{ url_for('main') }}">
         <fieldset>
             <legend>Text input</legend>
             <p>
