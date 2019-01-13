@@ -11,6 +11,7 @@ app = Flask(__name__)
 target_name = ['alt.atheism', 'comp.graphics', 'sci.med', 'sci.space']
 
 def loadmodel():
+   s3_client = boto3.client('s3')
    #load model
    bucket = 'ml-bucket-2'
    key = 'best_clf.joblib'
@@ -25,7 +26,7 @@ def main():
    timeString = now.strftime("%Y-%m-%d %H:%M")
    cpuCount = os.cpu_count()
    templateData = {
-      'title' : 'Abstract Analyzer',
+      'title' : 'Web App for News Group',
       'time': timeString,
       'cpucount' : cpuCount
       }
@@ -36,7 +37,8 @@ def main():
       return render_template('main.html', **templateData)
    elif request.method == 'POST':
       resultText = "You wrote: " + request.form['myTextArea']
-      label = target_name[clf.predict([request.form['myTextArea']])]
+      label = target_name[clf.predict([request.form['myTextArea']])[0]]
+      #label = "%s" % (type(request.form['myTextArea']))
       results = {'text' : resultText, 
                  'label' : label}
       return render_template('main.html', results=results, **templateData)

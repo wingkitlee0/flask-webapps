@@ -12,17 +12,18 @@
 </head>
 <body>
     <div class="center">
-    <h1>Abstract Analyzer</h1>
+    <h1>Simple web app for analyzing text</h1>
     <h2>The date and time on the server is: {{ time }}</h2>
     <p>The CPU has {{ cpucount }} cores.</p>
-    <p>This is a webapp template for Abstract Analyzer. Feel free to enter the abstract of your great work below and click submit. The actual analysis will be implemented in the next few weeks.</p>
+    <p>This is a simple webapp for the "20 news group" example in machine learning textbooks. For simplicity, we have only include the following categories: 'alt.atheism', 'comp.graphics', 'sci.med', 'sci.space'.</p>
+    <p>Feel free to enter some text below and press "submit". It will return the predicted category.</p>
     <br>
     <form role="form" method='POST' action="{{ url_for('main') }}">
         <fieldset>
             <legend>Text input</legend>
             <p>
             <label>Text Area</label>
-            <textarea id = "myTextArea" name="myTextArea" rows = "3" cols = "80">Enter your abstract here</textarea>
+            <textarea id = "myTextArea" name="myTextArea" rows = "3" cols = "80">Enter your text here</textarea>
             </p>
             <button type="submit" class="btn btn-default">Submit</button>
             </fieldset>
@@ -31,7 +32,7 @@
     {% if results %}
     <p>{{ results.text }} </p>
     <p></p>
-    <p>The label is {{ results.label }}</p>
+    <p>The category is {{ results.label }}</p>
     {% endif %}
     <br>
     {% for error in errors %}
