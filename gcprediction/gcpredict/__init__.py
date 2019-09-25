@@ -1,3 +1,3 @@
 from flask import Flask
 app = Flask(__name__)
-from gcpredict import views
+from gcpredict import views, model, modelutil
